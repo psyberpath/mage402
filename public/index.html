@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mage402</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #0f172a; /* Slate 900 */
+            color: #f8fafc; /* Slate 50 */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            background: -webkit-linear-gradient(#38bdf8, #818cf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        p {
+            font-size: 1.25rem;
+            color: #94a3b8; /* Slate 400 */
+        }
+        .container {
+            text-align: center;
+            padding: 2rem;
+            border-radius: 1rem;
+            background-color: #1e293b; /* Slate 800 */
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            border: 1px solid #334155; /* Slate 700 */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Mage402</h1>
+        <p id="tenants-message">No tenants yet</p>
+    </div>
+    
+    <script>
+        // Future logic to fetch tenants can go here
+        async function fetchTenants() {
+            try {
+                const response = await fetch('/api/tenants');
+                const tenants = await response.json();
+                
+                if (tenants.length > 0) {
+                    document.getElementById('tenants-message').innerText = \`\${tenants.length} tenants loaded\`;
+                }
+            } catch (error) {
+                console.error('Failed to fetch tenants:', error);
+            }
+        }
+        
+        fetchTenants();
+    </script>
+</body>
+</html>
